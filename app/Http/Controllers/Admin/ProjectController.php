@@ -13,7 +13,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projectList=Project::Paginate(15);
+        $projectList=Project::Paginate(10);
         return view('admin.projects.index', compact('projectList'));
     }
 
@@ -22,7 +22,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.projects.create');
     }
 
     /**
@@ -30,7 +30,11 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $newProject = Project::create($data);
+        $newProject->save();
+
+        return redirect()->route('admin.projects.index')->with('created', $newProject->title);
     }
 
     /**
@@ -47,7 +51,8 @@ class ProjectController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $project = Project::findOrFail($id);
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -55,7 +60,12 @@ class ProjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->all();
+
+        $project = Project::findOrFail($id);
+
+        $project->update($data);
+        return redirect()->route('admin.projects.index')->with('updated', $project->title);
     }
 
     /**
@@ -63,6 +73,23 @@ class ProjectController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $project = Project::findOrFail($id);
+
+        $project->delete();
+        return redirect()->route('admin.projects.index')->with('deleted', $project->title);
+    }
+
+    public function binned()
+    {
+        $projectList=Project::onlyTrashed()->paginate(10);
+        return view('admin.projects.bin', compact('projectList'));
+    }
+
+    public function restore($id)
+    {
+        $project = Project::withTrashed()->findOrFail($id);
+
+        $project->restore();
+        return redirect()->route('admin.projects.index')->with('restored', $project->title);
     }
 }
