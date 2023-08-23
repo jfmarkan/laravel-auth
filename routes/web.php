@@ -20,7 +20,9 @@ use App\Http\Controllers\Admin\ProjectController as ProjectController;
 Auth::routes();
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function (){
-    Route::get('/', [AdminPageController::class, 'logged'])->name('home');
+    Route::get('/home', [AdminPageController::class, 'logged'])->name('home');
+    Route::get('/projects/bin', [ProjectController::class, 'binned'])->name('projects.bin');
+    Route::delete('/projects/bin/{id}', [ProjectController::class, 'restore'])->name('projects.restore');
     Route::resource('/projects', ProjectController::class);
 });
 
