@@ -18,4 +18,4 @@ Route::get('/',[GuestPageController::class, 'landing'])->name('guest.welcome');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.home');
