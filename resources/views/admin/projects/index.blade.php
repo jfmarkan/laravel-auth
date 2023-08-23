@@ -9,29 +9,28 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <h1 class="m-3">
-                    
-                </h1>
-            </div>
-        </div>
-        <div class="row">
             @if (session('deleted'))
                 <div class="col-12">
                     <div class="alert alert-danger">
-                        <i class="fa-solid fa-circle-xmark"></i> {{ session('deleted') }} has been succesfully deleted.
+                        <i class="fa-solid fa-circle-xmark"></i> <strong>{{ session('deleted') }}</strong> has been succesfully deleted.
                     </div>
                 </div>
             @elseif ( session('created'))
                 <div class="col-12">
                     <div class="alert alert-success">
-                        <i class="fa-solid fa-circle-exclamation"></i> {{ session('created') }} has been succesfully created.
+                        <i class="fa-solid fa-circle-exclamation"></i> <strong>{{ session('created') }}</strong> has been succesfully created.
+                    </div>
+                </div>
+            @elseif ( session('updated'))
+                <div class="col-12">
+                    <div class="alert alert-warning">
+                        <i class="fa-solid fa-circle-exclamation"></i> <strong>{{ session('updated') }}</strong> has been succesfully updated.
                     </div>
                 </div>
             @elseif ( session('restored'))
                 <div class="col-12">
                     <div class="alert alert-warning">
-                        <i class="fa-solid fa-circle-exclamation"></i> {{ session('restored') }} has been succesfully restored.
+                        <i class="fa-solid fa-circle-exclamation"></i> <strong>{{ session('restored') }}</strong> has been succesfully restored.
                     </div>
                 </div>
             @endif
@@ -90,13 +89,13 @@
     </div>
 @endsection
 
-@section('custom-scripts-tail')
+@section('custom-scripts')
     <script>
         const deleteFormElements = document.querySelectorAll('form.form-terminator');
         deleteFormElements.forEach(formElement => {
             formElement.addEventListener('submit', function(event) {
                 event.preventDefault();
-                const userConfirm = window.confirm('Are you sure you want to delete this comic?');
+                const userConfirm = window.confirm('Are you sure you want to delete this Project?');
                 if (userConfirm){
                     this.submit();
                 }

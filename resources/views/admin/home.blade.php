@@ -16,6 +16,10 @@
 
                     {{ __('Welcome ' . Auth::user()->name . '. You are logged in!') }}
                 </div>
+
+                <div class="d-flex justify-content-center mb-3">
+                    <a href="{{route('admin.projects.index')}}" class="btn btn-info btn-sm">Continue</a>
+                </div>
             </div>
         </div>
     </div>

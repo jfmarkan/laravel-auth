@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Admin Show')
+@section('title', 'View Project Detail')
 
 @section('custom-stylesheets')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -41,13 +41,13 @@
 </div>
 @endsection
 
-@section('custom-scripts-tail')
+@section('custom-scripts')
     <script>
         const deleteFormElements = document.querySelectorAll('form.form-terminator');
         deleteFormElements.forEach(formElement => {
             formElement.addEventListener('submit', function(event) {
                 event.preventDefault();
-                const userConfirm = window.confirm('Are you sure you want to delete this comic?');
+                const userConfirm = window.confirm('Are you sure you want to delete this Project?');
                 if (userConfirm){
                     this.submit();
                 }
