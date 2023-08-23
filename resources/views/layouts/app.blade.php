@@ -14,6 +14,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
+    @yield('custom-stylesheets')
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
@@ -68,6 +69,9 @@
                             </li>
                         @endguest
                     </ul>
+                    <a href="{{route('admin.projects.create')}}" class="btn btn-info btn-sm ms-4">
+                        Add Project
+                    </a>
                 </div>
             </div>
         </nav>
