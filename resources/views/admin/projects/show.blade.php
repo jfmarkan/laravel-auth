@@ -17,6 +17,7 @@
                 <h6>
                     ID : {{ $project->id }}
                 </h6>
+                <img src="{{ asset('storage/' . $project->image)}}" alt="{{ $project->title }}'s Image">
                 <p class="card-text">
                     Development date: {{ $project->date }}
                 </p>

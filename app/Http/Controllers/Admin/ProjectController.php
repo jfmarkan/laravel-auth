@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -32,6 +33,8 @@ class ProjectController extends Controller
     {
         $data = $request->all();
         $newProject = Project::create($data);
+        $img_path = Storage::put('uploads', $request['image']);
+        $data['image']=$img_path;
         $newProject->save();
 
         return redirect()->route('admin.projects.index')->with('created', $newProject->title);
@@ -63,7 +66,8 @@ class ProjectController extends Controller
         $data = $request->all();
 
         $project = Project::findOrFail($id);
-
+        $img_path = Storage::put('uploads', $request['image']);
+        $data['image'] = $img_path;
         $project->update($data);
         return redirect()->route('admin.projects.index')->with('updated', $project->title);
     }

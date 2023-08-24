@@ -14,32 +14,38 @@
                     Modify {{ $project->title }}
                 </h1>
             </div>
-            <form class="col-8 bg-light p-3 rounded" action="{{ route('admin.projects.update', $project->id) }}" method="POST">
+            <form class="col-8 bg-light p-3 rounded" action="{{ route('admin.projects.update', $project->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mb-3">
                     <label for="title" class="form-label">
                         Title
                     </label>
-                    <input type="text" class="form-control" id="title" name="title" value="{{ $project->title }}">
+                    <input type="text" class="form-control" id="title" name="title" value="{{ old ('title', $project->title) }}">
                 </div>
                 <div class="mb-3">
                     <label for="repo" class="form-label">
                         Repository name
                     </label>
-                    <input type="text" class="form-control" id="repo" name="repo" value="{{ $project->repo }}">
+                    <input type="text" class="form-control" id="repo" name="repo" value="{{ old ('repo', $project->repo) }}">
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">
+                        Image
+                    </label>
+                    <input type="file" class="form-control" id="image" name="image" value="{{ old('image', '') }}">
                 </div>
                 <div class="mb-3">
                     <label for="language" class="form-label">
                         Language
                     </label>
-                    <input type="text" class="form-control" id="language" name="language" value="{{ $project->language }}">
+                    <input type="text" class="form-control" id="language" name="language" value="{{ old ('language', $project->language) }}">
                 </div>
                 <div class="mb-3">
                     <label for="date" class="form-label">
                         Date
                     </label>
-                    <input type="date" class="form-control" id="date" name="date" value="{{ $project->date }}">
+                    <input type="date" class="form-control" id="date" name="date" value="{{ old('date', $project->date) }}">
                 </div>
                 <button type="submit" class="btn btn-success">
                     <i class="fa-solid fa-check"></i>

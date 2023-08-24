@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row justify-content-around">
 
-            <form class="col-8 bg-light p-3 rounded" action="{{ route('admin.projects.store') }}" method="POST">
+            <form class="col-8 bg-light p-3 rounded" action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label for="title" class="form-label">
@@ -23,6 +23,12 @@
                         Repository name
                     </label>
                     <input type="text" class="form-control" id="repo" name="repo">
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">
+                        Image
+                    </label>
+                    <input type="file" class="form-control" id="image" name="image" placeholder="Insert your image">
                 </div>
                 <div class="mb-3">
                     <label for="language" class="form-label">
