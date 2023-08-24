@@ -13,5 +13,5 @@ class Project extends Model
 
     protected $table = "projects";
 
-    protected $fillable = ['repo', 'title', 'language', 'date'];
+    protected $fillable = ['repo', 'title', 'language', 'date', 'image'];
 }
